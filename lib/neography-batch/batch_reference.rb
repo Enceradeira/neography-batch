@@ -1,5 +1,5 @@
 module Neography
-  module Batch
+  module Composable
     class BatchReference
       def initialize(command)
         @command = command

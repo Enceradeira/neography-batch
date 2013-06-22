@@ -1,7 +1,7 @@
 require "spec_helper"
 
 module Neography
-  module Batch
+  module Composable
     describe BatchReference do
       describe "==" do
         specify do

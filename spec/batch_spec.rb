@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 
 
 module Neography
-  module Batch
+  module Composable
     describe Batch do
 
       def create_batches(command1, command2, command3)

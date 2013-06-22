@@ -1,5 +1,5 @@
 module Neography
-  module Batch
+  module Composable
     class Batch
       private
       def initialize(graph_db = Neography::Rest.new, commands = [])
