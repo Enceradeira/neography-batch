@@ -127,7 +127,6 @@ module Neography
 
           result1.should == result2
         end
-
         describe "and submit" do
           it "should combine separate batches into one batch" do
             batch1 = Batch.new(db)
@@ -203,6 +202,26 @@ module Neography
           subject.submit()
         end
       end
+      describe "add" do
+        context "with subclassed batch class" do
+          class SubclassedBatch < Batch
+          end
+          let(:batch) { Batch.new }
+          let(:subclassed_batch) { SubclassedBatch.new }
+
+          context "combines commands" do
+            before do
+              batch << [:create_node, {"id" => 2}]
+              subclassed_batch << [:create_node, {"id" => 45}]
+            end
+            it "combines commands" do
+              batch.add(subclassed_batch)
+              batch.should have(2).commands
+            end
+          end
+
+        end
+      end
       describe "add and submit" do
         it "should raise exception when added element doesn't respond to :each" do
           -> { subject.add(1) }.should raise_exception(StandardError)
@@ -231,7 +250,7 @@ module Neography
           subject.submit()
         end
 
-        context "when list 2 commands" do
+        context "list contains 2 commands" do
           before do
             @john = subject.add [:create_node]
             @markus = subject.add [:create_node]

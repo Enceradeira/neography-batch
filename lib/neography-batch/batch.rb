@@ -42,7 +42,7 @@ module Neography
       end
 
       def add(command_or_batch)
-        if command_or_batch.class == Batch
+        if command_or_batch.kind_of?(Batch)
           bind(command_or_batch)
         else
           unless command_or_batch.respond_to?(:each)
