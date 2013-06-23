@@ -16,7 +16,7 @@ gem 'neography-batch'
 And run Bundler:
 
 ```sh
-$ bundle
+$ bundle install
 ```
 ### Manually:
 Or install `neography-batch` manually:
@@ -28,7 +28,9 @@ And require the gem in your Ruby code:
 require 'neography-batch'
 ```
 ## Usage
-TODO: Describe usage
+
+
+HERE it goes
 
 ## Running tests
 ### Installing & starting neo4j
@@ -47,5 +49,5 @@ rake spec
 ## License
 This work is licensed under [GNU General Public License (v3 or later)](http://www.gnu.org/licenses/gpl-3.0.html)
 
-## 3-party licenses
+### 3-party licenses
 * Neography - MIT, see the LICENSE file http://github.com/maxdemarzi/neography/tree/master/LICENSE.
