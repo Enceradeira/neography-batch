@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'examples:' do
+describe 'examples' do
   describe 'simple write and read' do
     it 'writes to neo4j and reads from neo4j' do
 
@@ -54,7 +54,7 @@ describe 'examples:' do
       super_batch = batch1 << batch2
       super_batch.submit()
 
-       # test if it worked?
+      # test if it worked?
       result = Neography::Composable::Batch.new do |b|
         b << [:get_node_index, 'person', 'name', 'john']
         b << [:get_node_index, 'person', 'name', 'carl']
