@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'showcase' do
-  it 'shows essential futures' do
+  it 'shows essential features' do
     batch_1 = Neography::Composable::Batch.new
     john = batch_1 << [:create_node, {'name' => 'john'}]
 
