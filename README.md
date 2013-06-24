@@ -1,7 +1,7 @@
 ## Introduction
-Makes [neography-batches](https://github.com/maxdemarzi/neography/wiki/Batch "Neography Batch") better composable. By composing batches you can
+Neography-Batch makes [neography-batches](https://github.com/maxdemarzi/neography/wiki/Batch "Neography Batch") better composable. By composing batches you can
 * reduce the number of calls to the neo4j-server and therefore reducing network latency
-* implement transactions by aggregating the results of smaller calculations into one large transactional batch
+* implement transactions by aggregating the results of smaller computations into one large transactional batch
 
 ```ruby
 batch_1 = Neography::Composable::Batch.new
