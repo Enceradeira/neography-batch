@@ -5,7 +5,7 @@ module Neography
   module Composable
     describe Batch do
       let(:neo) { Neography::Rest.new }
-      describe 'new' do
+      describe '#new' do
         context 'without block' do
           let(:batch) { Batch.new(neo) }
 
@@ -62,7 +62,7 @@ module Neography
             expect(batch).not_to eq(another_batch)
           end
         end
-        context 'two batches and one of which has empty command' do
+        context 'batch with empty command and batch with none-empty command' do
           let(:empty_cmd_batch) { Batch.new(neo) { |b| b << [] } }
           let(:batch) { Batch.new(neo) { |b| b << [:command] } }
 
@@ -71,7 +71,7 @@ module Neography
             expect(empty_cmd_batch).not_to eq(batch)
           end
         end
-        context 'two batches and one of which is empty command' do
+        context 'empty batch and batch with one command' do
           let(:empty_batch) { Batch.new(neo) }
           let(:batch) { Batch.new(neo) { |b| b << [:command] } }
 
@@ -82,15 +82,16 @@ module Neography
         end
       end
 
-      describe 'bind' do
-        context "batch"
-        let(:command) { [[:create_node, {'id' => 7}]] }
-        let(:batch) { Batch.new(neo) { |b| b << command } }
-        context 'with unit' do
-          let(:unit) { Batch.unit() }
+      describe '#bind' do
+        context "batch" do
+          let(:command) { [[:create_node, {'id' => 7}]] }
+          let(:batch) { Batch.new(neo) { |b| b << command } }
+          context 'with unit' do
+            let(:unit) { Batch.unit() }
 
-          it 'equal batch' do
-            expect(unit.bind(batch)).to eq(batch)
+            it 'is equal batch' do
+              expect(unit.bind(batch)).to eq(batch)
+            end
           end
         end
         context 'unit' do
@@ -98,10 +99,10 @@ module Neography
           context 'with batch' do
             let(:command) { [[:create_node, {'id' => 7}]] }
             let(:batch) { Batch.new(neo) { |b| b << command } }
-          end
 
-          it 'equal batch' do
-            expect(unit.bind(batch)).to eq(batch)
+            it 'is equal batch' do
+              expect(unit.bind(batch)).to eq(batch)
+            end
           end
         end
         context 'three batches' do
@@ -137,7 +138,7 @@ module Neography
           end
           let(:super_batch) { two_batches[1].bind(two_batches[0]) }
 
-          describe "and submit" do
+          describe "#submit" do
 
             it "updates references" do
               neo.should_receive(:batch).with do |*commands|
@@ -154,7 +155,7 @@ module Neography
           end
         end
       end
-      describe 'find_reference' do
+      describe '#find_reference' do
         let(:batch) { Batch.new(neo) }
         context 'with three commands' do
           let(:command1) { [:create_node, {'id' => 7}] }
@@ -164,7 +165,7 @@ module Neography
           let!(:ref2) { batch << command2 }
           let!(:ref3) { batch << command3 }
 
-          context 'when predicate matches for one reference' do
+          context 'when predicate matches one command' do
             let!(:result) { batch.find_reference { |c| c == command2 } }
 
             it 'returns one reference' do
@@ -193,7 +194,7 @@ module Neography
       describe '<<' do
         context 'with command' do
           let(:command) { [:create_node] }
-          it 'is like add command' do
+          it 'behaves like add command' do
             batch_with_add = Batch.new(neo)
             batch = Batch.new(neo)
 
@@ -205,7 +206,7 @@ module Neography
         end
         context 'with batch' do
           let(:another_batch) { Batch.new(neo) { |b| b << [:create_node] } }
-          it 'is like bind batch' do
+          it 'behaves like bind batch' do
             batch_with_bind = Batch.new(neo)
             batch = Batch.new(neo)
 
@@ -217,7 +218,7 @@ module Neography
         end
       end
 
-      describe 'add' do
+      describe '#add' do
         context "subclassed batch class" do
           class SubclassedBatch < Batch
           end
@@ -243,7 +244,7 @@ module Neography
         end
       end
 
-      describe 'submit' do
+      describe '#submit' do
         let(:batch) { Batch.new(neo) }
         context 'with one added command' do
           let(:command) { [:create_node, {'id' => 1}] }
@@ -254,7 +255,7 @@ module Neography
 
             batch.submit()
           end
-          context 'and second submit' do
+          context '#submit' do
             before { batch.submit() }
 
             it 'does nothing the second time' do
@@ -264,7 +265,7 @@ module Neography
             end
           end
         end
-        context 'with a relation between to commands' do
+        context 'with a relationship between two commands' do
           let!(:ref_1) { batch << [:create_node] }
           let!(:ref_2) { batch << [:create_node] }
           let!(:relation) { batch << [:create_relationship, ref_2, ref_1] }
