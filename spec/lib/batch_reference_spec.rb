@@ -22,7 +22,6 @@ module Neography
           it 'is equal' do
             expect(ref1).to eq(ref2)
           end
-
           context 'same after_submit block' do
             let(:block) { Proc.new { | |} }
             before do
