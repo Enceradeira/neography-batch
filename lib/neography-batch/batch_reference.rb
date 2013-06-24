@@ -1,3 +1,5 @@
+require_relative 'neography_context.rb'
+
 module Neography
   module Composable
     class BatchReference
@@ -21,7 +23,7 @@ module Neography
 
       def notify_after_submit(result)
         unless @after_submit_action.nil?
-          @after_submit_action.call(result)
+          NeographyContext.new(&@after_submit_action).eval(result)
         end
       end
 

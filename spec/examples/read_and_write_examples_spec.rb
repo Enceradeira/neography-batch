@@ -38,7 +38,7 @@ describe 'examples' do
     end
   end
   describe 'aggregating two batches into one' do
-    it "writes all data in one batch/transaction" do
+    it 'writes all data in one batch/transaction' do
 
       batch1 = Neography::Composable::Batch.new do |b|
         b << [:create_unique_node, 'person', 'name', 'john', {'age' => 33}]
