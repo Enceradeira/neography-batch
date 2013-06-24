@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'examples' do
+describe 'read and write examples' do
   describe 'simple write and read' do
     it 'writes to neo4j and reads from neo4j' do
 

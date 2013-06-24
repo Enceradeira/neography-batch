@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'examples' do
+describe 'references and notification examples' do
   let(:neo) { Neography::Rest.new }
   let(:root) { neo.get_root }
 
