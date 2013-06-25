@@ -38,7 +38,7 @@ require 'neography-batch'
 ```
 ## Usage
 ### Creating a batch
-A batch is be created by
+A batch is created by
 ```ruby
 batch = Neography::Composable::Batch.new
 # add commands to the batch here
