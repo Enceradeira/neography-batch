@@ -16,7 +16,7 @@ batch_3 << [:create_relationship, 'friend_of', john, lucy]
 super_batch = batch_1 << batch_2 << batch_3
 super_batch.submit()
 ```
-Batches might be the foundation to more advanced concepts like [UnitOfWork](http://www.martinfowler.com/eaaCatalog/unitOfWork.html) or [Aggregates](http://en.wikipedia.org/wiki/Domain-driven_design).
+If you want to know more about my motivations please read [this post](http://enceradeira.blogspot.co.uk/2013/06/why-neography-batch-is-useful-to-me.html).
 ## Installation
 ### Gemfile:
 Add `neography-batch` to your Gemfile:
